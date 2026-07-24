@@ -32,6 +32,15 @@ Performance 100 (or highest legitimately achievable) · Accessibility 100 · Bes
 
 Apply to **every** optimization: (1) identify the actual bottleneck — measure, don't guess; (2) estimate its Lighthouse impact; (3) apply the smallest safe fix; (4) verify UI/UX/animation/function remain identical; (5) continue only if measurable gain remains. No speculative changes; prefer measurable improvements over unnecessary refactoring.
 
+## Project Understanding
+
+Before making any optimization:
+- Understand the project architecture.
+- Follow existing coding conventions.
+- Preserve naming patterns, component patterns, and state management.
+- Avoid unnecessary rewrites; prefer localized optimizations.
+- Never replace a working implementation simply because another approach is preferred.
+
 ---
 
 # Workflow — 6 Phases
@@ -40,6 +49,7 @@ Run in order. Do not skip Phase 1. No fixes in Phase 1–2.
 
 ## Phase 1 — Lock & Baseline
 Before any change:
+- Understand the project architecture and conventions first (see **Project Understanding**).
 - Read the design-preservation contract; treat design + animations as locked.
 - Run Lighthouse (mobile **and** desktop); record all 4 category scores + LCP, CLS, INP, FCP, TBT.
 - Identify the **real LCP element** — don't guess.
