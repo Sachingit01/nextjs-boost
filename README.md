@@ -27,7 +27,7 @@ The skill honestly pursues:
 
 **Core Web Vitals thresholds:** LCP ≤ 2.5s · CLS ≤ 0.1 · INP ≤ 200ms · TBT ≤ 200ms.
 
-If the targets aren't met on the first pass, the skill runs the optimization **a second time** (up to 2 passes total), then reports any remaining blocker. …and each vital has its own tactics:
+If the targets aren't met on the first pass, the skill **keeps iterating** — root-causing each remaining deduction and applying the smallest safe fix — and finishes only when every deduction is either fixed or documented with a valid technical reason it can't change without altering the design. …and each vital has its own tactics:
 
 - **LCP** (Largest Contentful Paint) — find the real LCP element, prioritize it correctly (`next/image` with `priority` on that one image only + accurate `sizes`), cut render-blocking work and JS executed before it paints.
 - **CLS** (Cumulative Layout Shift) — reserve image/video/iframe dimensions, prevent font shift, use transform-based animations instead of layout-changing ones.
