@@ -20,7 +20,7 @@ The skill honestly pursues:
 
 | Category | Target |
 |---|---|
-| Performance | ≥ 100 |
+| Performance | 100 |
 | Accessibility | 100 |
 | Best Practices | 100 |
 | SEO | 100 |
