@@ -131,6 +131,31 @@ Do all of the above **without** touching the design or animations — everything
 
 ---
 
+## Systematic Investigation Checklist
+
+The investigation surface for the **Lighthouse Completion Policy**. For each item below, find the **root cause** of any deduction, estimate its impact, apply the smallest implementation-only fix, and verify parity. Do not stop after generic optimizations — work every item until no safe improvement remains.
+
+**Performance**
+- Largest Contentful Paint (LCP) · First Contentful Paint (FCP) · Interaction to Next Paint (INP) · Cumulative Layout Shift (CLS) · Time to First Byte (TTFB)
+- Render-blocking resources · critical rendering path · network request chains
+- JavaScript execution time · long main-thread tasks
+- Unused JavaScript and CSS · bundle size · code splitting · dynamic imports
+- Hydration overhead · unnecessary client-side rendering · Server Component opportunities
+- Image optimization · font loading · CSS efficiency
+- Caching opportunities · third-party scripts
+
+**Best Practices**
+- Console errors and warnings · deprecated browser APIs · browser compatibility issues
+- Responsive image delivery · image sizing and aspect ratios
+- Security-related issues · source maps · mixed content
+- Third-party integrations · any implementation that negatively impacts browser best practices
+
+**Termination.** Continue iterating until every remaining deduction has been either:
+- **fixed**, or
+- **documented** with a valid technical reason why it cannot be improved without changing the existing design, functionality, animations, or project requirements.
+
+---
+
 ## Accessibility (WCAG 2.2 AA)
 
 Accessibility is **mandatory**. Always target a Lighthouse Accessibility score of 100.

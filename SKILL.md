@@ -26,7 +26,17 @@ Drive every Lighthouse category to its target **and** confirm the Core Web Vital
 
 Never manipulate or fake scores. Never optimize by removing functionality, animations, accessibility, or design.
 
-**Two-pass rule:** run the full workflow once. If **any** target above is unmet, repeat **Phases 2–5** a second time — **maximum 2 passes total**. If a target still isn't met after pass 2, stop and report the specific remaining blocker(s) and why (e.g., needs a Phase 6 design decision, or a server / infra / third-party constraint outside the code).
+**Iteration:** run the full workflow once. If **any** target above is unmet, repeat **Phases 2–5** (at least a second pass), and keep iterating per the **Lighthouse Completion Policy** below — never stop while a safe, design-preserving improvement remains.
+
+## Lighthouse Completion Policy
+
+Never consider the optimization complete until **Performance, Accessibility, Best Practices, and SEO are fully optimized**. If any category is below 100, keep investigating until no additional *safe* (implementation-only, design-preserving) improvement remains — do **not** stop after generic optimizations.
+
+For **every** remaining deduction: identify the **exact root cause**, estimate its impact, and apply the smallest implementation-only fix that preserves the existing UI, UX, animations, branding, functionality, accessibility, and project architecture. Investigate systematically across the **Performance** and **Best Practices** item lists in the playbook ("Systematic Investigation Checklist").
+
+Stop only when every remaining deduction is either:
+- **fixed**, or
+- **documented** with a valid technical reason it cannot be improved without changing the existing design, functionality, animations, or project requirements (raise these as a **Phase 6** decision).
 
 ## Iron Rules
 
@@ -89,10 +99,10 @@ Preserve the animation; optimize **how** it runs, never **what** it does. Allowe
 - Re-check every animation (timing, duration, easing, delay, sequence, feel) = identical.
 - Confirm the only visual diffs (if any) are allowed fixes: accessibility, browser render bug, CLS, broken layout.
 - Report scores before → after per category + metric, and parity confirmation. If parity fails, revert the offending change and re-evaluate.
-- **Check against targets** (Perf = 100, A11y/BP/SEO = 100; LCP ≤ 2.5s, CLS ≤ 0.1, INP ≤ 200ms, TBT ≤ 200ms). If any target is unmet **and this is pass 1**, loop back to **Phase 2** for a second pass (max 2). After pass 2, if still unmet, report the exact remaining blocker(s) and why.
+- **Check against targets** (Perf = 100, A11y/BP/SEO = 100; LCP ≤ 2.5s, CLS ≤ 0.1, INP ≤ 200ms, TBT ≤ 200ms). If any target is unmet, loop back to **Phase 2** and iterate per the **Lighthouse Completion Policy** — root-cause each remaining deduction and apply the smallest safe fix. Only finish when every deduction is **fixed** or **documented** with a valid technical reason it can't be fixed without a design change (→ Phase 6).
 
 ## Phase 6 — Gate (when unsure)
 Any optimization that requires changing visual appearance or animation behavior → **STOP.** (1) Explain why the change is needed; (2) explain the performance benefit; (3) wait for approval. Never assume permission to modify the UI or animations.
 
 ## Definition of Done
-Targets met within ≤ 2 passes — **Performance = 100, Accessibility = 100, Best Practices = 100, SEO = 100** and **LCP ≤ 2.5s, CLS ≤ 0.1, INP ≤ 200ms, TBT ≤ 200ms** (or the exact remaining blocker reported); scores pursued honestly (no faking); every change implementation-only OR Phase-6-approved; Minute-Details Sweep completed; visual + animation parity verified vs the Phase 1 baseline with no design regressions.
+Per the **Lighthouse Completion Policy**, every remaining deduction is **fixed** or **documented** with a valid technical reason — targeting **Performance = 100, Accessibility = 100, Best Practices = 100, SEO = 100** and **LCP ≤ 2.5s, CLS ≤ 0.1, INP ≤ 200ms, TBT ≤ 200ms**; scores pursued honestly (no faking); every change implementation-only OR Phase-6-approved; Minute-Details Sweep completed; visual + animation parity verified vs the Phase 1 baseline with no design regressions.
