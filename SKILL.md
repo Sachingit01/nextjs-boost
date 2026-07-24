@@ -61,7 +61,13 @@ Before any change:
 Diagnose only. Map each bottleneck to the vital it hurts — **LCP / CLS / INP / FCP / TBT** (tactics per vital in the playbook). For each finding: identify bottleneck → estimate impact → tag `safe` (implementation-only → Phase 3/4) or `needs-approval` (touches visuals → Phase 6). Rank by impact; drop speculative items.
 
 ## Phase 3 — Safe Optimize (implementation only)
-Apply `safe` findings via the Per-Change Decision Process. Scope = the contract's **"What You May Change"** list (Server-Component conversion, dynamic import, `next/image` with `priority` on the LCP image only + accurate `sizes`, `next/font`, memoization, bundle/dead-code reduction, reduced hydration, Suspense, caching, metadata/structured-data/SEO, etc.). Run a dedicated **accessibility pass to WCAG 2.2 AA** (full checklist in the playbook): never trade a11y for performance; never remove a focus indicator without an accessible replacement; never use non-semantic elements where semantic HTML fits.
+Apply `safe` findings via the Per-Change Decision Process. Scope = the contract's **"What You May Change"** list (Server-Component conversion, dynamic import, `next/image` with `priority` on the LCP image only + accurate `sizes`, `next/font`, memoization, bundle/dead-code reduction, reduced hydration, Suspense, caching, metadata/structured-data/SEO, etc.).
+
+**Eliminate dead weight** (playbook → "Unused Asset & Dead-Weight Elimination"): find with tooling (bundle analyzer, DevTools Coverage, `depcheck`/`knip`, grep) then remove **only provably unreferenced** items — unused images, videos, SVGs, other assets, dead code, unused deps, unused CSS, and unused font weights/subsets. **Never change the fonts that are in use** — keep the exact typefaces/weights/styles; only self-host, subset, and preload them via `next/font` to cut cost without changing the look.
+
+**Push LCP + Performance to 100:** apply the **Advanced LCP tactics** and, if the score plateaus near ~90, work the playbook's **"Closing the Last 10 Points"** checklist in impact order (unused JS/CSS, render-blocking resources, LCP request chain, TBT/hydration, modern images, in-use font loading, compression/caching, third parties).
+
+Run a dedicated **accessibility pass to WCAG 2.2 AA** (full checklist in the playbook): never trade a11y for performance; never remove a focus indicator without an accessible replacement; never use non-semantic elements where semantic HTML fits.
 
 ## Phase 4 — Animation Optimize (implementation only, visual identical)
 Preserve the animation; optimize **how** it runs, never **what** it does. Allowed vs forbidden optimizations = the contract's **"Animation Preservation"** section (GPU transforms, no layout thrash, ScrollTrigger config, lazy-load libs, rAF/lifecycle, fewer re-renders). Output must look, feel, and time **exactly** the same.

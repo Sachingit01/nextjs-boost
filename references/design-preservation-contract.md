@@ -72,6 +72,9 @@ The animation should look and feel **exactly the same** before and after optimiz
 - ✓ Optimize rendering strategy
 - ✓ Optimize CSS performance without changing appearance
 - ✓ Optimize animations internally while keeping their visual appearance identical
+- ✓ Remove **provably unreferenced** assets — unused images, videos, SVGs, and other static files nothing renders or imports
+- ✓ Remove unused font files/weights/subsets that are shipped but never applied — **but never change the fonts that are in use** (keep the exact typefaces, weights, and styles; only self-host/subset/preload their loading)
+- ✓ Remove unused dependencies, unused exports, and unused CSS (verify no visual diff)
 
 ---
 
