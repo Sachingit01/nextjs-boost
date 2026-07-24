@@ -14,13 +14,23 @@ A Claude Code skill that optimizes Next.js apps for **Lighthouse** (Performance,
 
 ## Install
 
-Clone into your Claude Code skills directory:
+With the [skills CLI](https://github.com/vercel-labs/skills) (recommended) — run from your project root:
 
 ```bash
-git clone <this-repo-url> ~/.claude/skills/nextjs-lighthouse-skill
+npx skills add Sachingit01/nextjs-lighthouse-skill
 ```
 
-(Or download the folder and drop it into `~/.claude/skills/`.)
+Auto-detects your agent (Claude Code, Cursor, Codex, etc.) and installs non-interactively. Preview what's inside first:
+
+```bash
+npx skills add Sachingit01/nextjs-lighthouse-skill --list
+```
+
+Or clone manually into your Claude Code skills directory:
+
+```bash
+git clone https://github.com/Sachingit01/nextjs-lighthouse-skill.git ~/.claude/skills/nextjs-lighthouse-skill
+```
 
 ## Use
 
