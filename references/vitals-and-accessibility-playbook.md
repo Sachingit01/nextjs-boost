@@ -6,7 +6,7 @@ Objective: maximize Lighthouse scores through real engineering improvements whil
 
 - Never manipulate or fake Lighthouse scores.
 - Never optimize by removing functionality, animations, accessibility, or design.
-- **Two-pass rule:** if any target is unmet on the first pass, repeat the audit → optimize → verify cycle once more (max 2 passes total), then report any remaining blocker.
+- **Iteration:** if any target is unmet, repeat the audit → optimize → verify cycle (at least once more) and keep iterating per the **Lighthouse Completion Policy** — finish only when every remaining deduction is fixed or documented with a valid technical reason.
 
 ---
 
