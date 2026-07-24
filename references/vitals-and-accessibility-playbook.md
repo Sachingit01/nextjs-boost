@@ -2,7 +2,7 @@
 
 Objective: maximize Lighthouse scores through real engineering improvements while preserving the existing UI, UX, animations, and functionality.
 
-**Targets:** Performance ≥ 98 · Accessibility = 100 · Best Practices = 100 · SEO = 100. **Core Web Vitals:** LCP ≤ 2.5s · CLS ≤ 0.1 · INP ≤ 200ms · TBT ≤ 200ms.
+**Targets:** Performance ≥ 100 · Accessibility = 100 · Best Practices = 100 · SEO = 100. **Core Web Vitals:** LCP ≤ 2.5s · CLS ≤ 0.1 · INP ≤ 200ms · TBT ≤ 200ms.
 
 - Never manipulate or fake Lighthouse scores.
 - Never optimize by removing functionality, animations, accessibility, or design.
