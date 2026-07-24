@@ -1,9 +1,9 @@
 ---
-name: nextjs-lighthouse-skill
+name: nextjs-boost
 description: Optimize Next.js (App Router, React 19) apps for Lighthouse (Performance, Accessibility, Best Practices, SEO) and Core Web Vitals without changing the existing UI, UX, animations, or branding. Use when improving Lighthouse scores, Core Web Vitals, hydration/bundle/load performance, or accessibility while keeping the exact visual design and animation behavior. Enforces a design-preservation contract, a 6-phase baseline → audit → optimize → verify workflow, and a visual-parity gate.
 ---
 
-# Next.js Lighthouse Skill
+# Next.js Boost
 
 Maximize Lighthouse scores through **real engineering improvements** while preserving the existing UI, UX, animations, and functionality **exactly**.
 
