@@ -164,4 +164,56 @@ Never reduce accessibility to improve performance. Never remove focus indicators
 
 ---
 
+## Best Practices (target 100)
+
+Lighthouse deducts here for small, easily-fixed correctness issues. Check every one:
+- ✓ **Zero browser console errors** on load and interaction (fix the underlying error — never silence it).
+- ✓ **No deprecated APIs** and no browser warnings.
+- ✓ Served over **HTTPS**; no mixed content (all requests https).
+- ✓ **Images have correct aspect ratio** and are displayed at natural resolution (no distorted/upscaled bitmaps).
+- ✓ **No known-vulnerable libraries** (patch/upgrade flagged deps).
+- ✓ Valid **source maps** for shipped JS in production (or intentionally omitted).
+- ✓ A **Content-Security-Policy** effective against XSS, plus `X-Content-Type-Options: nosniff` and sensible security headers.
+- ✓ Correct `<!DOCTYPE html>`, `<meta charset>`, and a viewport meta with no `user-scalable=no`/`maximum-scale` that blocks zoom.
+- ✓ Don't request **geolocation/notification/camera** permissions on page load.
+- ✓ External links use `rel="noopener"`/`noreferrer` where appropriate.
+- ✓ No use of `document.write`, no unload listeners, no third-party cookies you don't need.
+- ✓ Pass paste into password fields; no deprecated `<blink>`/quirks-mode issues.
+
+## SEO (target 100)
+
+Use the Next.js **Metadata API** so these are correct on every route:
+- ✓ Unique, descriptive `<title>` and **`meta description`** per page.
+- ✓ `<html lang>` set correctly.
+- ✓ Viewport meta present (Next.js default) so content is mobile-friendly.
+- ✓ Page is **indexable** — no accidental `noindex`/`robots: none`, not blocked by `robots.txt`.
+- ✓ **Canonical URL** (`alternates.canonical`) to avoid duplicate-content dilution.
+- ✓ **`robots.txt`** and **`sitemap.xml`** present (Next.js `robots.ts` / `sitemap.ts`).
+- ✓ **Legible font sizes** and adequate **tap-target sizes/spacing** (Lighthouse SEO + mobile checks).
+- ✓ Links are **crawlable** (`<a href>`, not JS-only click handlers) with **descriptive link text** (no "click here").
+- ✓ Images have `alt`; `hreflang` set if the app is internationalized.
+- ✓ **Structured data** (JSON-LD) valid where relevant (Article, Product, Breadcrumb, Organization).
+- ✓ Open Graph / Twitter Card metadata for correct sharing (not scored, but expected on production pages).
+
+## Minute-Details Sweep (the 1–3 point leaks)
+
+After the big wins, do a final pass for the small things that quietly cap a category below 100. None of these change the design:
+- Console: **no errors or warnings** in production build.
+- Every `<img>`/`next/image`: has `alt`, has width+height (or `fill` + sized parent), correct format, not oversized, not lazy if it's the LCP.
+- Exactly **one** `priority` image (the LCP); everything else below the fold `loading="lazy"`.
+- `next/font` for all in-use fonts (no render-blocking `<link>` to font CDNs); `preconnect` only to origins actually used.
+- One `<h1>` per page; headings in order (no skipped levels).
+- All form controls have associated `<label>`s; buttons/links have accessible names; icon-only buttons have `aria-label`.
+- Sufficient **color contrast** (≥ 4.5:1 text) — if a real fail, treat as an allowed accessibility fix.
+- `meta description`, `title`, `lang`, canonical present on **every** route.
+- No `maximum-scale`/`user-scalable=no` blocking zoom.
+- Third-party scripts loaded via `next/script` with the right `strategy`; analytics deferred.
+- Caching headers on static assets; compression enabled; no 404/redirected requests in the critical path.
+- `robots.txt` + `sitemap.xml` present and correct; no stray `noindex`.
+- Remove leftover `console.log`, debug code, and dev-only imports from production.
+
+Re-run Lighthouse after the sweep and confirm each category; keep only changes with a measurable gain and verify visual parity.
+
+---
+
 > Per-Change Decision Process (stated in full in `SKILL.md`): identify bottleneck → estimate impact → smallest safe fix → verify parity → continue only if measurable gain.

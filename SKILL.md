@@ -67,12 +67,16 @@ Apply `safe` findings via the Per-Change Decision Process. Scope = the contract'
 
 **Push LCP + Performance to 100:** apply the **Advanced LCP tactics** and, if the score plateaus near ~90, work the playbook's **"Closing the Last 10 Points"** checklist in impact order (unused JS/CSS, render-blocking resources, LCP request chain, TBT/hydration, modern images, in-use font loading, compression/caching, third parties).
 
-Run a dedicated **accessibility pass to WCAG 2.2 AA** (full checklist in the playbook): never trade a11y for performance; never remove a focus indicator without an accessible replacement; never use non-semantic elements where semantic HTML fits.
+Run dedicated passes for **all four categories** (full checklists in the playbook), pursuing the max of each:
+- **Accessibility** (WCAG 2.2 AA) — never trade a11y for performance; never remove a focus indicator without an accessible replacement; never use non-semantic elements where semantic HTML fits.
+- **Best Practices** — zero console errors, no deprecated/vulnerable code, HTTPS/no mixed content, correct image aspect ratios, security headers/CSP.
+- **SEO** — per-route `title` + `meta description` + canonical via the Metadata API, `lang`, indexable, `robots.txt` + `sitemap.xml`, crawlable links, structured data.
 
 ## Phase 4 — Animation Optimize (implementation only, visual identical)
 Preserve the animation; optimize **how** it runs, never **what** it does. Allowed vs forbidden optimizations = the contract's **"Animation Preservation"** section (GPU transforms, no layout thrash, ScrollTrigger config, lazy-load libs, rAF/lifecycle, fewer re-renders). Output must look, feel, and time **exactly** the same.
 
 ## Phase 5 — Verify Parity
+- Run the playbook's **Minute-Details Sweep** first — the 1–3 point leaks (console warnings, alt/width/height, single `priority` image, per-route metadata, contrast, tap targets, leftover debug code) that quietly cap a category below 100.
 - Re-run Lighthouse (mobile + desktop); record deltas vs Phase 1.
 - Re-screenshot every page/state; diff against baseline.
 - Re-check every animation (timing, duration, easing, delay, sequence, feel) = identical.
@@ -83,4 +87,4 @@ Preserve the animation; optimize **how** it runs, never **what** it does. Allowe
 Any optimization that requires changing visual appearance or animation behavior → **STOP.** (1) Explain why the change is needed; (2) explain the performance benefit; (3) wait for approval. Never assume permission to modify the UI or animations.
 
 ## Definition of Done
-Targets pursued honestly (no faking); every change is implementation-only OR Phase-6-approved; visual + animation parity verified vs the Phase 1 baseline; accessibility at 100 (WCAG 2.2 AA) with no design regressions.
+Targets pursued honestly (no faking); every change is implementation-only OR Phase-6-approved; visual + animation parity verified vs the Phase 1 baseline; **all four categories driven to their max** (Performance, Accessibility WCAG 2.2 AA, Best Practices, SEO) with the Minute-Details Sweep completed and no design regressions.
