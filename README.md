@@ -20,12 +20,14 @@ The skill honestly pursues:
 
 | Category | Target |
 |---|---|
-| Performance | 100 (or the highest legitimately achievable) |
+| Performance | ≥ 98 |
 | Accessibility | 100 |
 | Best Practices | 100 |
 | SEO | 100 |
 
-…and the underlying **Core Web Vitals**, each with its own tactics:
+**Core Web Vitals thresholds:** LCP ≤ 2.5s · CLS ≤ 0.1 · INP ≤ 200ms · TBT ≤ 200ms.
+
+If the targets aren't met on the first pass, the skill runs the optimization **a second time** (up to 2 passes total), then reports any remaining blocker. …and each vital has its own tactics:
 
 - **LCP** (Largest Contentful Paint) — find the real LCP element, prioritize it correctly (`next/image` with `priority` on that one image only + accurate `sizes`), cut render-blocking work and JS executed before it paints.
 - **CLS** (Cumulative Layout Shift) — reserve image/video/iframe dimensions, prevent font shift, use transform-based animations instead of layout-changing ones.
