@@ -99,10 +99,4 @@ Never assume permission to modify the UI or animations.
 
 ---
 
-## Golden Rule
-
-**Optimize the implementation — not the design.**
-
-Improve the code, rendering strategy, architecture, and runtime performance while preserving the exact visual experience, animation quality, interaction patterns, branding, and overall feel of the application.
-
-> Think like a Principal Frontend Engineer improving the engine of a high-performance sports car without changing its exterior, interior, or driving experience.
+> Golden Rule (stated in full in `SKILL.md`): optimize the implementation — not the design.

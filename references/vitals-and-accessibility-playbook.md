@@ -112,14 +112,4 @@ Never reduce accessibility to improve performance. Never remove focus indicators
 
 ---
 
-## Performance Decision Process
-
-Before **every** optimization:
-
-1. Identify the actual bottleneck.
-2. Estimate its Lighthouse impact.
-3. Apply the smallest safe optimization.
-4. Verify that UI, UX, animations, and functionality remain identical.
-5. Continue only if measurable improvements remain.
-
-Do not make speculative optimizations. Always prefer measurable engineering improvements over unnecessary refactoring.
+> Per-Change Decision Process (stated in full in `SKILL.md`): identify bottleneck → estimate impact → smallest safe fix → verify parity → continue only if measurable gain.
